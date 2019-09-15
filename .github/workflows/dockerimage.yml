@@ -15,7 +15,7 @@ jobs:
     - name: Build the Docker image
       run: docker build --tag $(cat /tmp/tag-for-docker.txt) .
     - name: Check token
-      run: [ -n "$GITHUB_TOKEN" ] || echo false && echo true
+      run: "[ -n \"$GITHUB_TOKEN\" ] || echo false && echo true"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_TO_PUSH_TO_PACKAGE_REGISTRY }}
     - name: Login to GitHub Package Registry
