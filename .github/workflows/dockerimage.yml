@@ -13,7 +13,7 @@ jobs:
     - name: Generate the tag for current build
       run: export TAG=${GITHUB_REF#refs/*/}; echo docker.pkg.github.com/${{ github.repository }}/docker-base:${TAG/master/latest} > /tmp/tag-for-docker.txt
     - name: Build the Docker image
-      run: docker build Dockerfile.d/docker-01-build/ --tag $(cat /tmp/tag-for-docker.txt)
+      run: docker build Dockerfile --tag $(cat /tmp/tag-for-docker.txt)
     - name: Login to GitHub Package Registry
       run: docker login docker.pkg.github.com -u kounoike -p $GITHUB_TOKEN
       env:
